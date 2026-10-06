@@ -1,0 +1,1522 @@
+{
+ "marcas": [
+  {
+   "nome": "Aspirina",
+   "pesos": {
+    "Saúde: SRAG": 1.5,
+    "Busca: Gripe": 1.0,
+    "Busca: dor de garganta": 1.0,
+    "Clima: temp. mínima": -1.0,
+    "Saúde: dengue": -1.0
+   },
+   "motivos": {
+    "Saúde: SRAG": "mais casos de doença respiratória aumentam a procura por antigripais",
+    "Busca: Gripe": "mais gente pesquisando gripe indica mais pessoas com sintomas",
+    "Busca: dor de garganta": "dor de garganta é sintoma típico de gripe e resfriado",
+    "Clima: temp. mínima": "o frio favorece gripes e resfriados",
+    "Saúde: dengue": "RISCO: com dengue em alta, o AAS é contraindicado e a procura cai"
+   }
+  },
+  {
+   "nome": "Redoxon",
+   "pesos": {
+    "Saúde: SRAG": 1.5,
+    "Busca: Gripe": 1.0,
+    "Busca: dor de garganta": 0.5,
+    "Clima: temp. mínima": -1.0,
+    "Clima: umidade": -0.5
+   },
+   "motivos": {
+    "Saúde: SRAG": "mais doença respiratória aumenta a busca por reforço de imunidade",
+    "Busca: Gripe": "interesse por gripe indica preocupação com imunidade",
+    "Busca: dor de garganta": "dor de garganta é sintoma típico de gripe e resfriado",
+    "Clima: temp. mínima": "o frio favorece gripes e resfriados",
+    "Clima: umidade": "o ar seco favorece problemas respiratórios"
+   }
+  },
+  {
+   "nome": "Redoxon Kids",
+   "pesos": {
+    "Saúde: SRAG": 1.5,
+    "Busca: Gripe": 1.0,
+    "Clima: temp. mínima": -1.0
+   },
+   "motivos": {
+    "Saúde: SRAG": "doença respiratória em alta preocupa os pais com a imunidade das crianças",
+    "Busca: Gripe": "interesse por gripe indica preocupação com imunidade",
+    "Clima: temp. mínima": "o frio favorece gripes e resfriados"
+   }
+  },
+  {
+   "nome": "Flanax",
+   "pesos": {
+    "Saúde: dengue": -1.0,
+    "Clima: temp. mínima": -0.5
+   },
+   "motivos": {
+    "Saúde: dengue": "RISCO: com dengue em alta, anti-inflamatórios são contraindicados e a procura cai",
+    "Clima: temp. mínima": "o frio tende a aumentar dores musculares e articulares (hipótese)"
+   }
+  },
+  {
+   "nome": "Bepantol Derma",
+   "pesos": {
+    "Clima: umidade": -1.0,
+    "Clima: temp. mínima": -0.5,
+    "Busca: pele ressecada": 1.5
+   },
+   "motivos": {
+    "Clima: umidade": "o ar seco resseca pele e lábios",
+    "Clima: temp. mínima": "o frio resseca a pele",
+    "Busca: pele ressecada": "mais gente pesquisando pele ressecada indica mais procura por hidratação"
+   }
+  },
+  {
+   "nome": "Bepantol Baby",
+   "pesos": {
+    "Clima: temp. máxima": 0.7,
+    "Clima: umidade": 0.7
+   },
+   "motivos": {
+    "Clima: temp. máxima": "o calor favorece assaduras",
+    "Clima: umidade": "a umidade favorece assaduras"
+   }
+  },
+  {
+   "nome": "Gyno Canesten",
+   "pesos": {
+    "Clima: temp. máxima": 1.0,
+    "Clima: umidade": 1.0,
+    "Busca: candidíase": 1.5
+   },
+   "motivos": {
+    "Clima: temp. máxima": "o calor favorece a candidíase",
+    "Clima: umidade": "a umidade favorece a candidíase",
+    "Busca: candidíase": "mais gente pesquisando candidíase indica mais casos"
+   }
+  },
+  {
+   "nome": "Gino Sabonete",
+   "pesos": {
+    "Clima: temp. máxima": 1.0,
+    "Clima: umidade": 0.5
+   },
+   "motivos": {
+    "Clima: temp. máxima": "o calor aumenta o uso de higiene íntima",
+    "Clima: umidade": "a umidade aumenta o uso de higiene íntima"
+   }
+  },
+  {
+   "nome": "Gino Balance",
+   "pesos": {
+    "Clima: temp. máxima": 0.7,
+    "Clima: umidade": 0.7
+   },
+   "motivos": {
+    "Clima: temp. máxima": "calor e umidade desequilibram o pH íntimo",
+    "Clima: umidade": "calor e umidade desequilibram o pH íntimo"
+   }
+  },
+  {
+   "nome": "Outros",
+   "pesos": {
+    "Clima: temp. máxima": 0.5,
+    "Clima: umidade": 0.3,
+    "Clima: chuva": 0.3
+   },
+   "motivos": {
+    "Clima: temp. máxima": "Canesten/Baycuten: calor favorece micoses",
+    "Clima: umidade": "Canesten/Baycuten: umidade favorece micoses",
+    "Clima: chuva": "Canesten/Baycuten: chuva favorece micoses"
+   }
+  },
+  {
+   "nome": "Força Médica",
+   "pesos": {},
+   "motivos": {}
+  }
+ ],
+ "perfis": {
+  "ANTIGRIPAL": {
+   "nome": "Antigripal (AAS + vitamina C)",
+   "funcao": "Alivia sintomas de gripe e resfriado",
+   "porque": "Vende mais quando há gripe e frio; com dengue em alta o AAS é contraindicado.",
+   "pesos": {
+    "Saúde: SRAG": 1.5,
+    "Busca: Gripe": 1.0,
+    "Busca: dor de garganta": 1.0,
+    "Clima: temp. mínima": -1.0,
+    "Saúde: dengue": -1.0
+   }
+  },
+  "AAS": {
+   "nome": "Analgésico e antitérmico (AAS)",
+   "funcao": "Dor e febre",
+   "porque": "Acompanha gripes e resfriados; com dengue em alta o AAS é contraindicado.",
+   "pesos": {
+    "Saúde: SRAG": 1.0,
+    "Busca: Gripe": 0.5,
+    "Clima: temp. mínima": -0.5,
+    "Saúde: dengue": -1.0
+   }
+  },
+  "CAFEINA": {
+   "nome": "Analgésico com cafeína",
+   "funcao": "Dor de cabeça e enxaqueca",
+   "porque": "Pouco sazonal; com dengue em alta o AAS é contraindicado.",
+   "pesos": {
+    "Saúde: SRAG": 0.3,
+    "Clima: temp. mínima": -0.3,
+    "Saúde: dengue": -1.0
+   }
+  },
+  "DIP_PARA": {
+   "nome": "Dipirona / paracetamol",
+   "funcao": "Dor e febre",
+   "porque": "Acompanha gripe e é o analgésico indicado na suspeita de dengue: ganha com dengue em alta.",
+   "pesos": {
+    "Saúde: SRAG": 1.0,
+    "Busca: Gripe": 0.5,
+    "Clima: temp. mínima": -0.5,
+    "Saúde: dengue": 1.0
+   }
+  },
+  "VITC": {
+   "nome": "Vitamina C (imunidade)",
+   "funcao": "Reforço da imunidade",
+   "porque": "Vende mais na temporada de gripe e frio.",
+   "pesos": {
+    "Saúde: SRAG": 1.5,
+    "Busca: Gripe": 1.0,
+    "Busca: dor de garganta": 0.5,
+    "Clima: temp. mínima": -1.0,
+    "Clima: umidade": -0.5
+   }
+  },
+  "MULTI": {
+   "nome": "Multivitamínico / energia",
+   "funcao": "Energia e nutrição diária",
+   "porque": "Pouco sazonal; leve alta no inverno.",
+   "pesos": {
+    "Saúde: SRAG": 0.5,
+    "Clima: temp. mínima": -0.3
+   }
+  },
+  "KIDS": {
+   "nome": "Imunidade infantil",
+   "funcao": "Vitaminas para crianças",
+   "porque": "Pais reforçam a imunidade dos filhos na temporada de gripe e frio.",
+   "pesos": {
+    "Saúde: SRAG": 1.5,
+    "Busca: Gripe": 1.0,
+    "Clima: temp. mínima": -1.0
+   }
+  },
+  "AINE": {
+   "nome": "Anti-inflamatório (naproxeno)",
+   "funcao": "Dor, inflamação e cólica",
+   "porque": "Frio aumenta dores musculares (hipótese); com dengue em alta, anti-inflamatórios são contraindicados.",
+   "pesos": {
+    "Clima: temp. mínima": -0.5,
+    "Saúde: SRAG": 0.3,
+    "Saúde: dengue": -1.0
+   }
+  },
+  "HIDRATA": {
+   "nome": "Hidratante / regenerador da pele",
+   "funcao": "Pele ressecada e sensível",
+   "porque": "Ar seco e frio ressecam a pele.",
+   "pesos": {
+    "Clima: umidade": -1.0,
+    "Clima: temp. mínima": -0.5,
+    "Busca: pele ressecada": 1.5
+   }
+  },
+  "LABIAL": {
+   "nome": "Hidratante labial",
+   "funcao": "Lábios ressecados e proteção",
+   "porque": "Ar seco e frio ressecam os lábios.",
+   "pesos": {
+    "Clima: umidade": -1.0,
+    "Clima: temp. mínima": -0.7,
+    "Busca: pele ressecada": 1.0
+   }
+  },
+  "FACIAL_FPS": {
+   "nome": "Hidratante facial com FPS",
+   "funcao": "Hidratação e proteção solar",
+   "porque": "Calor e sol aumentam o uso de proteção; ar seco pede hidratação.",
+   "pesos": {
+    "Clima: temp. máxima": 0.7,
+    "Clima: umidade": -0.5,
+    "Busca: pele ressecada": 0.5
+   }
+  },
+  "PELE_ESP": {
+   "nome": "Cuidado específico da pele",
+   "funcao": "Tatuagem, cicatrizes, limpeza, toque seco",
+   "porque": "Pouco sazonal; leve alta no calor.",
+   "pesos": {
+    "Clima: temp. máxima": 0.4
+   }
+  },
+  "ASSADURA": {
+   "nome": "Prevenção de assaduras",
+   "funcao": "Pele do bebê e do idoso",
+   "porque": "Calor e umidade favorecem assaduras.",
+   "pesos": {
+    "Clima: temp. máxima": 0.7,
+    "Clima: umidade": 0.7
+   }
+  },
+  "LENCOS": {
+   "nome": "Lenços umedecidos",
+   "funcao": "Higiene do bebê",
+   "porque": "Pouco sazonal; leve alta no calor.",
+   "pesos": {
+    "Clima: temp. máxima": 0.3
+   }
+  },
+  "MICOSE": {
+   "nome": "Antifúngico de pele",
+   "funcao": "Micoses (frieira, pano branco)",
+   "porque": "Calor, umidade e chuva favorecem micoses.",
+   "pesos": {
+    "Clima: temp. máxima": 1.0,
+    "Clima: umidade": 1.0,
+    "Clima: chuva": 0.5
+   }
+  },
+  "ALERGIA": {
+   "nome": "Antialérgico",
+   "funcao": "Rinite e alergias",
+   "porque": "Ar seco e frio pioram rinite e alergias.",
+   "pesos": {
+    "Clima: umidade": -1.0,
+    "Clima: temp. mínima": -0.5
+   }
+  },
+  "CANDIDIASE": {
+   "nome": "Antifúngico vaginal",
+   "funcao": "Candidíase",
+   "porque": "Calor e umidade favorecem a candidíase; buscas indicam casos.",
+   "pesos": {
+    "Clima: temp. máxima": 1.0,
+    "Clima: umidade": 1.0,
+    "Busca: candidíase": 1.5
+   }
+  },
+  "INTIMA": {
+   "nome": "Higiene íntima",
+   "funcao": "Sabonete íntimo",
+   "porque": "Calor aumenta o uso de higiene íntima.",
+   "pesos": {
+    "Clima: temp. máxima": 1.0,
+    "Clima: umidade": 0.5
+   }
+  },
+  "PH": {
+   "nome": "Tratamento de vaginose (gel)",
+   "funcao": "Vaginose e equilíbrio íntimo",
+   "porque": "Calor e umidade desequilibram a flora íntima; buscas por candidíase indicam demanda do tema.",
+   "pesos": {
+    "Clima: temp. máxima": 0.7,
+    "Clima: umidade": 0.7,
+    "Busca: candidíase": 0.5
+   }
+  },
+  "VITE": {
+   "nome": "Vitamina E (antioxidante)",
+   "funcao": "Suplemento antioxidante",
+   "porque": "Sem fator externo relevante: segue o plano normal.",
+   "pesos": {}
+  }
+ },
+ "mercado": {
+  "ANTIGRIPAL": {
+   "categoria": "Antigripais",
+   "tamanho": 9,
+   "forca": 5,
+   "posicao": "Desafiante",
+   "concorrentes": "Cimegripe (Cimed, top 10 MIPs), Benegrip (Hypera), Resfenol",
+   "tendencia": "Antigripais estão entre os MIPs mais vendidos; forte sazonalidade de inverno",
+   "proposta": "Aspirina C une analgésico + vitamina C efervescente",
+   "fonte": "Close-Up (MIPs, MAT 08/2025)"
+  },
+  "AAS": {
+   "categoria": "Analgésicos e antitérmicos",
+   "tamanho": 10,
+   "forca": 5,
+   "posicao": "Desafiante",
+   "concorrentes": "Dorflex (Opella, líder dos MIPs), Novalgina, Neosaldina, genéricos",
+   "tendencia": "MIPs: R$ 21,99 bi em 12 meses, +7,5%; analgésicos dominam a categoria",
+   "proposta": "Marca histórica e conhecida (AAS)",
+   "fonte": "Close-Up (MAT out/2024 e jun/2025)"
+  },
+  "CAFEINA": {
+   "categoria": "Analgésicos com cafeína",
+   "tamanho": 8,
+   "forca": 4,
+   "posicao": "Desafiante",
+   "concorrentes": "Neosaldina (Hypera), Dorflex (Opella)",
+   "tendencia": "Dor de cabeça: categoria grande e pouco sazonal",
+   "proposta": "Combinação AAS + cafeína",
+   "fonte": "Close-Up (MAT out/2024)"
+  },
+  "DIP_PARA": {
+   "categoria": "Dipirona e paracetamol",
+   "tamanho": 10,
+   "forca": 3,
+   "posicao": "Entrante",
+   "concorrentes": "Novalgina (Opella), Tylenol, genéricos de dipirona/paracetamol",
+   "tendencia": "Muito grande, porém comoditizada: preço decide",
+   "proposta": "Extensão da marca Aspirina para dor e febre",
+   "fonte": "Close-Up (MIPs) e varejo online"
+  },
+  "VITC": {
+   "categoria": "Vitamina C",
+   "tamanho": 8,
+   "forca": 7,
+   "posicao": "Forte (top 10)",
+   "concorrentes": "Cebion (Merck), Targifor/Cewin (Opella), marcas próprias (bwell)",
+   "tendencia": "Vitaminas e suplementos: +37% volume e +29% faturamento (mar/24-fev/25)",
+   "proposta": "Marca tradicional; Redoxon no top 10 de vitaminas isoladas em unidades",
+   "fonte": "ACESSA; Close-Up (ano móvel abr/2025)"
+  },
+  "MULTI": {
+   "categoria": "Multivitamínicos e energia",
+   "tamanho": 8,
+   "forca": 4,
+   "posicao": "Desafiante",
+   "concorrentes": "Centrum, Lavitan, Targifor-C (líder de suplementos)",
+   "tendencia": "Categoria em forte crescimento",
+   "proposta": "Extensão Redoxon para energia e multivitaminas",
+   "fonte": "Close-Up (abr/2025); Drogasil"
+  },
+  "KIDS": {
+   "categoria": "Vitaminas infantis",
+   "tamanho": 6,
+   "forca": 6,
+   "posicao": "Forte",
+   "concorrentes": "Cewin gotas, Supra C Kids, marcas próprias",
+   "tendencia": "Acompanha o crescimento de vitaminas",
+   "proposta": "Formatos infantis (sabor, gotas)",
+   "fonte": "Varejo online"
+  },
+  "AINE": {
+   "categoria": "Anti-inflamatórios / dor",
+   "tamanho": 9,
+   "forca": 5,
+   "posicao": "Desafiante",
+   "concorrentes": "Dorflex, cetoprofeno (top 10 MIPs), ibuprofeno (Advil/Alivium)",
+   "tendencia": "Dor é a maior classe dos MIPs",
+   "proposta": "Naproxeno de longa duração (12h e versão 24h)",
+   "fonte": "Close-Up (MAT 08/2025)"
+  },
+  "HIDRATA": {
+   "categoria": "Hidratação / reparação da pele",
+   "tamanho": 8,
+   "forca": 8,
+   "posicao": "Líder (segundo a Bayer)",
+   "concorrentes": "Cicaplast (La Roche-Posay), Nivea, Hipoglós (uso como hidratante)",
+   "tendencia": "Dermocosméticos em expansão; forte demanda na seca",
+   "proposta": "Dexpantenol: marca referência em hidratação profunda",
+   "fonte": "Bayer (2021); imprensa"
+  },
+  "LABIAL": {
+   "categoria": "Hidratante labial",
+   "tamanho": 6,
+   "forca": 7,
+   "posicao": "Forte",
+   "concorrentes": "Carmed (Cimed), Nivea, Labello",
+   "tendencia": "Sazonal (frio e seca)",
+   "proposta": "Regenerador labial com dexpantenol",
+   "fonte": "Varejo online; Loja Bayer Mercado Livre"
+  },
+  "FACIAL_FPS": {
+   "categoria": "Hidratante facial com FPS",
+   "tamanho": 7,
+   "forca": 4,
+   "posicao": "Entrante",
+   "concorrentes": "Neutrogena, La Roche-Posay, Nivea",
+   "tendencia": "Skincare facial em crescimento",
+   "proposta": "Linha facial lançada em 2021",
+   "fonte": "Bayer (2021)"
+  },
+  "PELE_ESP": {
+   "categoria": "Cuidados específicos da pele",
+   "tamanho": 5,
+   "forca": 6,
+   "posicao": "Forte em nichos",
+   "concorrentes": "Cicatricure, óleos de rosa mosqueta",
+   "tendencia": "Nicho (tatuagem, cicatriz); Rosa Mosqueta 20g é 'mais vendido' na loja Bayer",
+   "proposta": "Dexpantenol + rosa mosqueta / pós-tatuagem",
+   "fonte": "Loja Bayer Mercado Livre"
+  },
+  "ASSADURA": {
+   "categoria": "Antiassaduras",
+   "tamanho": 7,
+   "forca": 9,
+   "posicao": "Líder (segundo a Bayer)",
+   "concorrentes": "Hipoglós (P&G, top 10 OTC em volume), Dermodex, marcas próprias",
+   "tendencia": "Recorrente (todo bebê usa); mais procura no calor",
+   "proposta": "Creme preventivo sem óxido de zinco, mais indicado por pediatras (segundo a marca)",
+   "fonte": "Bayer (2021); Close-Up (MAT out/2024)"
+  },
+  "LENCOS": {
+   "categoria": "Lenços umedecidos",
+   "tamanho": 6,
+   "forca": 4,
+   "posicao": "Entrante",
+   "concorrentes": "Huggies, Pampers, Johnson's Baby, marcas próprias",
+   "tendencia": "Categoria de cerca de R$ 618 mi/ano no canal farma (IQVIA, 2021)",
+   "proposta": "Lenços com pró-vitamina B5 e sem fragrância",
+   "fonte": "Bayer/IQVIA (2021)"
+  },
+  "MICOSE": {
+   "categoria": "Antifúngicos de pele",
+   "tamanho": 5,
+   "forca": 6,
+   "posicao": "Forte",
+   "concorrentes": "Micolamina, Nizoral, genéricos de clotrimazol",
+   "tendencia": "Sazonal (calor e umidade)",
+   "proposta": "Clotrimazol tradicional (Canesten)",
+   "fonte": "Varejo online"
+  },
+  "ALERGIA": {
+   "categoria": "Antialérgicos",
+   "tamanho": 7,
+   "forca": 4,
+   "posicao": "Desafiante",
+   "concorrentes": "Allegra (Opella, top 10 MIPs), Histamin, genéricos de loratadina",
+   "tendencia": "Grande; pico no inverno/primavera",
+   "proposta": "Loratadina sem sono",
+   "fonte": "Close-Up (MAT 08/2025)"
+  },
+  "CANDIDIASE": {
+   "categoria": "Candidíase (tratamento)",
+   "tamanho": 5,
+   "forca": 9,
+   "posicao": "Líder",
+   "concorrentes": "Gynotran, genéricos de clotrimazol/miconazol",
+   "tendencia": "Recorrente: 3 em 4 mulheres terão candidíase na vida",
+   "proposta": "Marca nº1 em candidíase; dose única (1 dia)",
+   "fonte": "Panorama Farmacêutico (2025); varejo"
+  },
+  "INTIMA": {
+   "categoria": "Higiene íntima",
+   "tamanho": 6,
+   "forca": 3,
+   "posicao": "Entrante (lançamento 2025)",
+   "concorrentes": "Dermacyd (Opella), Lucretin, Nivea Íntimo",
+   "tendencia": "Uso diário; leve alta no calor",
+   "proposta": "Endosso da marca líder em candidíase",
+   "fonte": "Panorama Farmacêutico (2025)"
+  },
+  "PH": {
+   "categoria": "Vaginose / equilíbrio íntimo",
+   "tamanho": 4,
+   "forca": 5,
+   "posicao": "Nicho",
+   "concorrentes": "Géis vaginais, tratamentos com prescrição",
+   "tendencia": "Nicho em crescimento",
+   "proposta": "Tratamento sem prescrição para vaginose",
+   "fonte": "Site Gino-Canesten"
+  },
+  "VITE": {
+   "categoria": "Vitamina E",
+   "tamanho": 3,
+   "forca": 4,
+   "posicao": "Nicho",
+   "concorrentes": "Vitamina E genérica, Neo Química",
+   "tendencia": "Pequena e pouco sazonal",
+   "proposta": "Antioxidante",
+   "fonte": "Varejo online"
+  }
+ },
+ "skus": [
+  {
+   "sku": "ASPIRINA 0,5g com x100 BR",
+   "marca": "Aspirina",
+   "perfil": "AAS",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.0
+  },
+  {
+   "sku": "ASPIRINA 500MG (20CPR)",
+   "marca": "Aspirina",
+   "perfil": "AAS",
+   "preco": 18,
+   "fonte_preco": "estimado",
+   "papel": "Herói",
+   "relevancia": 6.6
+  },
+  {
+   "sku": "ASPIRINA C EFV (100 CPR)",
+   "marca": "Aspirina",
+   "perfil": "ANTIGRIPAL",
+   "preco": 120,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.3
+  },
+  {
+   "sku": "ASPIRINA PLUS C 400 MG 10s BR",
+   "marca": "Aspirina",
+   "perfil": "ANTIGRIPAL",
+   "preco": 22,
+   "fonte_preco": "estimado",
+   "papel": "Herói",
+   "relevancia": 6.5
+  },
+  {
+   "sku": "BAYCUTEN N (CREME BG 40G)",
+   "marca": "Outros",
+   "perfil": "MICOSE",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.5
+  },
+  {
+   "sku": "BENEROC grag x100 BR",
+   "marca": "Outros",
+   "perfil": "MULTI",
+   "preco": 70,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.8
+  },
+  {
+   "sku": "Bepantol Toque Seco 30ml",
+   "marca": "Bepantol Derma",
+   "perfil": "PELE_ESP",
+   "preco": 42,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 5.4
+  },
+  {
+   "sku": "Bepantol Baby Maxi Tubo 60g",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 40,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.0
+  },
+  {
+   "sku": "BEPANTOL DERMA CREME 20G",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 32,
+   "fonte_preco": "estimado",
+   "papel": "Herói",
+   "relevancia": 7.5
+  },
+  {
+   "sku": "Bepantol Derma Creme 40g BR",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 50,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.0
+  },
+  {
+   "sku": "Bepantol Derma Reg. Labial 7,5ml",
+   "marca": "Bepantol Derma",
+   "perfil": "LABIAL",
+   "preco": 44.9,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 6.9
+  },
+  {
+   "sku": "Bepantol Sensicalm CREA TUBE 275mL BR",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 90,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.4
+  },
+  {
+   "sku": "BEPANTOL BABY Creme 120 g",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 55.17,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 8.0
+  },
+  {
+   "sku": "BEPANTOL Baby Promopack 15% Off",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 50,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.7
+  },
+  {
+   "sku": "CAFIASPIRINA (100 CPR)",
+   "marca": "Aspirina",
+   "perfil": "CAFEINA",
+   "preco": 60,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 5.3
+  },
+  {
+   "sku": "CANESTEN CREME, 20 GR",
+   "marca": "Outros",
+   "perfil": "MICOSE",
+   "preco": 25,
+   "fonte_preco": "estimado",
+   "papel": "Herói",
+   "relevancia": 5.9
+  },
+  {
+   "sku": "Claritin 10mg TABL 12 BR",
+   "marca": "Outros",
+   "perfil": "ALERGIA",
+   "preco": 35,
+   "fonte_preco": "estimado",
+   "papel": "Herói",
+   "relevancia": 5.9
+  },
+  {
+   "sku": "Claritin 10mg TABL 6 BR",
+   "marca": "Outros",
+   "perfil": "ALERGIA",
+   "preco": 20,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 4.8
+  },
+  {
+   "sku": "Flanax 275mg 20 Comp. BR",
+   "marca": "Flanax",
+   "perfil": "AINE",
+   "preco": 17.19,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 5.5
+  },
+  {
+   "sku": "Flanax 550mg TAFI BLI 20 BR",
+   "marca": "Flanax",
+   "perfil": "AINE",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 6.1
+  },
+  {
+   "sku": "GINO CANESTEN 3 CREME VAG.(20G)",
+   "marca": "Gyno Canesten",
+   "perfil": "CANDIDIASE",
+   "preco": 60,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 6.7
+  },
+  {
+   "sku": "GINO CANESTEN CREME VAG. (35G)",
+   "marca": "Gyno Canesten",
+   "perfil": "CANDIDIASE",
+   "preco": 72.99,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 7.6
+  },
+  {
+   "sku": "Gino-Calm GEL SOLU 100ml BR",
+   "marca": "Gino Sabonete",
+   "perfil": "INTIMA",
+   "preco": 35,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 4.5
+  },
+  {
+   "sku": "Kit Redoxon SOLU 4x20ml drops promo BR",
+   "marca": "Redoxon",
+   "perfil": "VITC",
+   "preco": 90,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.6
+  },
+  {
+   "sku": "Redoxon Kids 25s BR",
+   "marca": "Redoxon Kids",
+   "perfil": "KIDS",
+   "preco": 40,
+   "fonte_preco": "estimado",
+   "papel": "Herói",
+   "relevancia": 6.5
+  },
+  {
+   "sku": "Redoxon Kids C+D+Zinco x 25 BR",
+   "marca": "Redoxon Kids",
+   "perfil": "KIDS",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.7
+  },
+  {
+   "sku": "Redoxon Kids Morango 25S BR",
+   "marca": "Redoxon Kids",
+   "perfil": "KIDS",
+   "preco": 40,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.7
+  },
+  {
+   "sku": "REDOXON 1G LARANJ 10CPR EFER",
+   "marca": "Redoxon",
+   "perfil": "VITC",
+   "preco": 16.82,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 6.8
+  },
+  {
+   "sku": "REDOXON 2G 10CPR EFERV",
+   "marca": "Redoxon",
+   "perfil": "VITC",
+   "preco": 27.72,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 6.3
+  },
+  {
+   "sku": "Redoxon Gotas 20ml BR",
+   "marca": "Redoxon",
+   "perfil": "VITC",
+   "preco": 25,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 6.2
+  },
+  {
+   "sku": "REDOXON NA ef x30 BR",
+   "marca": "Redoxon",
+   "perfil": "VITC",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 6.6
+  },
+  {
+   "sku": "Redoxon Tripla Ação x10",
+   "marca": "Redoxon",
+   "perfil": "VITC",
+   "preco": 19.49,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 6.9
+  },
+  {
+   "sku": "Redoxon Tripla Ação x30",
+   "marca": "Redoxon",
+   "perfil": "VITC",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Herói",
+   "relevancia": 7.4
+  },
+  {
+   "sku": "Flanax 275mg 60 count (Fireworks)",
+   "marca": "Flanax",
+   "perfil": "AINE",
+   "preco": 40,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 5.7
+  },
+  {
+   "sku": "Flanax 275mg 8 count (Fireworks)",
+   "marca": "Flanax",
+   "perfil": "AINE",
+   "preco": 15.09,
+   "fonte_preco": "pesquisado",
+   "papel": "Promo/kit",
+   "relevancia": 5.1
+  },
+  {
+   "sku": "Pack Baby 120gr 25%off 2ª unid",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 100,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 7.1
+  },
+  {
+   "sku": "Flanax 550 MG COM REV X 15",
+   "marca": "Flanax",
+   "perfil": "AINE",
+   "preco": 29.69,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 5.9
+  },
+  {
+   "sku": "Kit Gino Calm 2x100 ml + 50% off 2ª unid.",
+   "marca": "Gino Sabonete",
+   "perfil": "INTIMA",
+   "preco": 55,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 4.4
+  },
+  {
+   "sku": "Bepantol Baby Lenços Umedecidos 48 unid.",
+   "marca": "Bepantol Baby",
+   "perfil": "LENCOS",
+   "preco": 19.9,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 5.3
+  },
+  {
+   "sku": "Redoxon 500mg TABL BT 30 BR",
+   "marca": "Redoxon",
+   "perfil": "VITC",
+   "preco": 28.99,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 6.3
+  },
+  {
+   "sku": "Bepantol Derma Hidratante Facial Diário FPS25",
+   "marca": "Bepantol Derma",
+   "perfil": "FACIAL_FPS",
+   "preco": 70,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.6
+  },
+  {
+   "sku": "Bepantol Derma Hidratante Restaurador Noturna",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 70,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.2
+  },
+  {
+   "sku": "Bepantol Derma Limpeza Delicada Gel Diário",
+   "marca": "Bepantol Derma",
+   "perfil": "PELE_ESP",
+   "preco": 50,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.5
+  },
+  {
+   "sku": "Canesten 1% SOLU BT 30ml BR",
+   "marca": "Outros",
+   "perfil": "MICOSE",
+   "preco": 30,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.2
+  },
+  {
+   "sku": "Canesten Spray 1% SOLU PUB 30ml BR",
+   "marca": "Outros",
+   "perfil": "MICOSE",
+   "preco": 35,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.3
+  },
+  {
+   "sku": "Gino Canesten cápsula vaginal",
+   "marca": "Gyno Canesten",
+   "perfil": "CANDIDIASE",
+   "preco": 114.49,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 7.9
+  },
+  {
+   "sku": "BEPANTOL BABY 30G",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 23.53,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 7.4
+  },
+  {
+   "sku": "Bepantol Baby Lenços Umedecidos 96 unid.",
+   "marca": "Bepantol Baby",
+   "perfil": "LENCOS",
+   "preco": 37.9,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 4.9
+  },
+  {
+   "sku": "Bepantol Baby Kit LMPM 5 x 120g",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 250,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 7.7
+  },
+  {
+   "sku": "Bepantol Baby 5% OINT TUBE 3x30g",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 60,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.8
+  },
+  {
+   "sku": "Flanax 550mg 10 Comp. BR",
+   "marca": "Flanax",
+   "perfil": "AINE",
+   "preco": 27.09,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 6.6
+  },
+  {
+   "sku": "EPHYNAL 400MG 30 CAPS",
+   "marca": "Força Médica",
+   "perfil": "VITE",
+   "preco": 60,
+   "fonte_preco": "estimado",
+   "papel": "Herói",
+   "relevancia": 5.3
+  },
+  {
+   "sku": "Redoxon Tripla Ação 20% off",
+   "marca": "Redoxon",
+   "perfil": "VITC",
+   "preco": 36,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.0
+  },
+  {
+   "sku": "Gino Canesten Balance",
+   "marca": "Gino Balance",
+   "perfil": "PH",
+   "preco": 70,
+   "fonte_preco": "estimado",
+   "papel": "Herói",
+   "relevancia": 6.0
+  },
+  {
+   "sku": "Flanax 24H 660mg TABI STP 8 BR",
+   "marca": "Flanax",
+   "perfil": "AINE",
+   "preco": 27.49,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 5.8
+  },
+  {
+   "sku": "Pack L6P4 Bepantol Baby Lenços Umed. 48",
+   "marca": "Bepantol Baby",
+   "perfil": "LENCOS",
+   "preco": 60,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 4.8
+  },
+  {
+   "sku": "Bepantol Derma Reg. Labial 7,5ml L4P3 Display",
+   "marca": "Bepantol Derma",
+   "perfil": "LABIAL",
+   "preco": 90,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.1
+  },
+  {
+   "sku": "Bepantol Derma Spray 50ml (Paraná)",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.5
+  },
+  {
+   "sku": "BEPANTOL DERMA SOLUCAO 50ml (Paraná)",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 40,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.5
+  },
+  {
+   "sku": "GINO-CANESTEN 1 (Bonsai)",
+   "marca": "Gyno Canesten",
+   "perfil": "CANDIDIASE",
+   "preco": 100,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.0
+  },
+  {
+   "sku": "Bepantol Baby Lenços BIO 48 unid.",
+   "marca": "Bepantol Baby",
+   "perfil": "LENCOS",
+   "preco": 22.14,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 4.6
+  },
+  {
+   "sku": "Bepantol Baby Lenços BIO 96 unid.",
+   "marca": "Bepantol Baby",
+   "perfil": "LENCOS",
+   "preco": 37.9,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 4.9
+  },
+  {
+   "sku": "Pack Bepantol Baby Lenços 48x5 + 60g Grátis",
+   "marca": "Bepantol Baby",
+   "perfil": "LENCOS",
+   "preco": 90,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 5.1
+  },
+  {
+   "sku": "Bepantol Baby Lenços Umedecidos 12x48 unid.",
+   "marca": "Bepantol Baby",
+   "perfil": "LENCOS",
+   "preco": 180,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 5.5
+  },
+  {
+   "sku": "Gino-Canesten Triplo Cuidado 200ml",
+   "marca": "Gino Sabonete",
+   "perfil": "INTIMA",
+   "preco": 30,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 4.4
+  },
+  {
+   "sku": "Gino-Canesten Puro Cuidado 200ml",
+   "marca": "Gino Sabonete",
+   "perfil": "INTIMA",
+   "preco": 30,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 4.4
+  },
+  {
+   "sku": "Bepantol Baby Lenços Umedecidos Antibac 48",
+   "marca": "Bepantol Baby",
+   "perfil": "LENCOS",
+   "preco": 22.14,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 4.6
+  },
+  {
+   "sku": "Bepantol Tattoo CREA TUF 30g BR",
+   "marca": "Bepantol Derma",
+   "perfil": "PELE_ESP",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.5
+  },
+  {
+   "sku": "Bepantol Rosa Mosqueta OINT TUF 20g BR",
+   "marca": "Bepantol Derma",
+   "perfil": "PELE_ESP",
+   "preco": 37.9,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 6.2
+  },
+  {
+   "sku": "Redoxon Multi x30",
+   "marca": "Redoxon",
+   "perfil": "MULTI",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.5
+  },
+  {
+   "sku": "Redoxon Multi x60",
+   "marca": "Redoxon",
+   "perfil": "MULTI",
+   "preco": 75,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.9
+  },
+  {
+   "sku": "Bepantol Derma Body Loção 400ml",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 80,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.3
+  },
+  {
+   "sku": "Bepantol Derma Body Loção 200ml",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 78.9,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 7.3
+  },
+  {
+   "sku": "Bepantol Derma Creme 200ml",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 78.9,
+   "fonte_preco": "pesquisado",
+   "papel": "Linha",
+   "relevancia": 7.3
+  },
+  {
+   "sku": "Bepantol LIP STICK 4,5g",
+   "marca": "Bepantol Derma",
+   "perfil": "LABIAL",
+   "preco": 30,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.8
+  },
+  {
+   "sku": "Bepantol Derma LIP STICK 50FPS",
+   "marca": "Bepantol Derma",
+   "perfil": "LABIAL",
+   "preco": 35,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.9
+  },
+  {
+   "sku": "Bepantol Derma Hidratante Restaurador Noturna (Disney)",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 70,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.8
+  },
+  {
+   "sku": "Redoxon Energy x30",
+   "marca": "Redoxon",
+   "perfil": "MULTI",
+   "preco": 45,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.5
+  },
+  {
+   "sku": "Redoxon Energy x60",
+   "marca": "Redoxon",
+   "perfil": "MULTI",
+   "preco": 75,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.9
+  },
+  {
+   "sku": "Kit Bepantol Lenços Leve 4 Pague 3",
+   "marca": "Bepantol Baby",
+   "perfil": "LENCOS",
+   "preco": 60,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 4.8
+  },
+  {
+   "sku": "Gino-Canesten TriploCuidado 2x200 Promo",
+   "marca": "Gino Sabonete",
+   "perfil": "INTIMA",
+   "preco": 50,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 4.3
+  },
+  {
+   "sku": "Gino-Canesten PuroCuidado 2x200 Promo",
+   "marca": "Gino Sabonete",
+   "perfil": "INTIMA",
+   "preco": 50,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 4.3
+  },
+  {
+   "sku": "AspDip 1g x 10",
+   "marca": "Aspirina",
+   "perfil": "DIP_PARA",
+   "preco": 12,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 4.9
+  },
+  {
+   "sku": "AspDip 500mg x 30",
+   "marca": "Aspirina",
+   "perfil": "DIP_PARA",
+   "preco": 15,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.0
+  },
+  {
+   "sku": "AspDip 500mg x 100",
+   "marca": "Aspirina",
+   "perfil": "DIP_PARA",
+   "preco": 35,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 5.1
+  },
+  {
+   "sku": "AspDip 500mg Gotas 20ml",
+   "marca": "Aspirina",
+   "perfil": "DIP_PARA",
+   "preco": 10,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 4.8
+  },
+  {
+   "sku": "ASPMOL 750mg x20",
+   "marca": "Aspirina",
+   "perfil": "DIP_PARA",
+   "preco": 15,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.0
+  },
+  {
+   "sku": "ASPMOL 500mg x20",
+   "marca": "Aspirina",
+   "perfil": "DIP_PARA",
+   "preco": 10,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 4.8
+  },
+  {
+   "sku": "ASPMOL 500mg x100",
+   "marca": "Aspirina",
+   "perfil": "DIP_PARA",
+   "preco": 35,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 5.1
+  },
+  {
+   "sku": "Bepantol Derma Reg. Labial 7,5ml (Nova Fórmula)",
+   "marca": "Bepantol Derma",
+   "perfil": "LABIAL",
+   "preco": 44.9,
+   "fonte_preco": "pesquisado",
+   "papel": "Herói",
+   "relevancia": 6.9
+  },
+  {
+   "sku": "Bepantol Senior 60g",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 40,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.0
+  },
+  {
+   "sku": "BEPANTOL BABY Creme 100g",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 50,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.1
+  },
+  {
+   "sku": "BEPANTOL BABY Creme 200g",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 85,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.4
+  },
+  {
+   "sku": "Pack BEPANTOL BABY Creme 3x100g",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 130,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 7.3
+  },
+  {
+   "sku": "Gino-Canesten Balance GEL 7x5ml",
+   "marca": "Gino Balance",
+   "perfil": "PH",
+   "preco": 70,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.2
+  },
+  {
+   "sku": "CANESTEN CREME 20 GR (novo EAN)",
+   "marca": "Outros",
+   "perfil": "MICOSE",
+   "preco": 25,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.1
+  },
+  {
+   "sku": "Bepantol Baby Disney CREA TUF 120g",
+   "marca": "Bepantol Baby",
+   "perfil": "ASSADURA",
+   "preco": 55,
+   "fonte_preco": "estimado",
+   "papel": "Promo/kit",
+   "relevancia": 6.8
+  },
+  {
+   "sku": "Bepantol Derma Big Spray",
+   "marca": "Bepantol Derma",
+   "perfil": "HIDRATA",
+   "preco": 70,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 7.2
+  },
+  {
+   "sku": "Gino-Calm SOLU BT 100ml BR",
+   "marca": "Gino Sabonete",
+   "perfil": "INTIMA",
+   "preco": 35,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 4.5
+  },
+  {
+   "sku": "Flanax 275mg x10",
+   "marca": "Flanax",
+   "perfil": "AINE",
+   "preco": 12,
+   "fonte_preco": "estimado",
+   "papel": "Linha",
+   "relevancia": 5.3
+  }
+ ],
+ "escala": [
+  {
+   "nivel": 1,
+   "de": -100,
+   "situacao": "Demanda muito abaixo do normal",
+   "acao": "Evitar investimento promocional; revisar estoque",
+   "porque": "Os fatores externos indicam procura bem menor que a média do ano: promoção agora tende a render pouco."
+  },
+  {
+   "nivel": 2,
+   "de": -1.5,
+   "situacao": "Demanda bem abaixo do normal",
+   "acao": "Reduzir investimento; monitorar",
+   "porque": "Procura esperada bem abaixo da média: reduzir a verba evita gastar em um momento fraco."
+  },
+  {
+   "nivel": 3,
+   "de": -1.0,
+   "situacao": "Demanda abaixo do normal",
+   "acao": "Ações mínimas; priorizar outras regiões",
+   "porque": "Procura abaixo da média: a mesma verba rende mais onde o sinal é melhor."
+  },
+  {
+   "nivel": 4,
+   "de": -0.5,
+   "situacao": "Levemente abaixo do normal",
+   "acao": "Manter plano, sem reforço",
+   "porque": "Leve queda esperada: não justifica cortar o plano, nem reforçar."
+  },
+  {
+   "nivel": 5,
+   "de": -0.2,
+   "situacao": "Neutro (leve viés negativo)",
+   "acao": "Plano normal",
+   "porque": "Fatores externos perto da média: seguir o plano comercial."
+  },
+  {
+   "nivel": 6,
+   "de": 0,
+   "situacao": "Neutro (leve viés positivo)",
+   "acao": "Plano normal",
+   "porque": "Fatores externos perto da média: seguir o plano comercial."
+  },
+  {
+   "nivel": 7,
+   "de": 0.2,
+   "situacao": "Oportunidade leve",
+   "acao": "Garantir exposição e estoque",
+   "porque": "Leve aumento de procura: o principal é não faltar produto nem visibilidade."
+  },
+  {
+   "nivel": 8,
+   "de": 0.5,
+   "situacao": "Oportunidade moderada",
+   "acao": "Reforçar estoque e ponto de venda",
+   "porque": "Procura acima da média: reforçar estoque e exposição evita ruptura e captura a demanda extra."
+  },
+  {
+   "nivel": 9,
+   "de": 1.0,
+   "situacao": "Oportunidade alta",
+   "acao": "Antecipar promoção e reforçar estoque",
+   "porque": "Procura bem acima da média: antecipar a promoção aproveita o pico antes da concorrência."
+  },
+  {
+   "nivel": 10,
+   "de": 1.5,
+   "situacao": "Oportunidade muito alta",
+   "acao": "Prioridade máxima: promoção, estoque e mídia",
+   "porque": "Procura muito acima da média: prioridade máxima de estoque, promoção e mídia."
+  }
+ ],
+ "prioridade": {
+  "efeito": 0.6,
+  "relevancia": 0.4
+ },
+ "eventos": {
+  "11": "Black Friday",
+  "12": "Natal",
+  "02": "Carnaval",
+  "05": "Dia das Mães",
+  "04": "Reajuste CMED"
+ }
+}
