@@ -1,0 +1,30 @@
+name: Atualizar dados do radar
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"   # toda segunda-feira, 06h de Brasília
+  workflow_dispatch:       # botão "Run workflow" para rodar na hora
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependências
+        run: pip install -r scripts/requirements.txt
+      - name: Rodar o robô
+        run: python scripts/atualizar.py
+      - name: Salvar dados atualizados
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "Atualização automática dos dados ($(date +'%d/%m/%Y'))"
+          git push
