@@ -180,22 +180,58 @@ def fonte_dengue():
         STATUS['dengue']={'status':'tipico','detalhe':'Dengue indisponível: usando o perfil sazonal típico (pico de fevereiro a maio)'}
         return None
 
+NOMES_UF = {'acre':'AC','alagoas':'AL','amapa':'AP','amazonas':'AM','bahia':'BA','ceara':'CE','distrito federal':'DF','espirito santo':'ES',
+ 'goias':'GO','maranhao':'MA','mato grosso':'MT','mato grosso do sul':'MS','minas gerais':'MG','para':'PA','paraiba':'PB','parana':'PR',
+ 'pernambuco':'PE','piaui':'PI','rio de janeiro':'RJ','rio grande do norte':'RN','rio grande do sul':'RS','rondonia':'RO','roraima':'RR',
+ 'santa catarina':'SC','sao paulo':'SP','sergipe':'SE','tocantins':'TO'}
+COD_UF = {'11':'RO','12':'AC','13':'AM','14':'RR','15':'PA','16':'AP','17':'TO','21':'MA','22':'PI','23':'CE','24':'RN','25':'PB','26':'PE',
+ '27':'AL','28':'SE','29':'BA','31':'MG','32':'ES','33':'RJ','35':'SP','41':'PR','42':'SC','43':'RS','50':'MS','51':'MT','52':'GO','53':'DF'}
+def _uf_de(props):
+    import unicodedata
+    for k in ('codarea','codigo_ibg','cod_uf','CD_UF','id'):
+        v = str(props.get(k,''))[:2]
+        if v in COD_UF: return COD_UF[v]
+    for k in ('sigla','SIGLA','UF','uf','SIGLA_UF','abbrev'):
+        v = str(props.get(k,'')).upper()
+        if v in POP: return v
+    for k in ('name','nome','NOME','NM_UF','Estado'):
+        v = unicodedata.normalize('NFKD', str(props.get(k,''))).encode('ascii','ignore').decode().lower().strip()
+        if v in NOMES_UF: return NOMES_UF[v]
+    return None
 def fonte_mapas():
-    """Mapa detalhado do IBGE (regiões + estados). Baixa uma vez e guarda em data/base."""
-    alvo = {'regiao': os.path.join(BASE,'mapa_regioes.geojson'), 'UF': os.path.join(BASE,'mapa_ufs.geojson')}
-    if all(os.path.exists(v) for v in alvo.values()):
-        STATUS['mapa'] = {'status':'ok','detalhe':'Mapa detalhado do IBGE (salvo)'}; return
+    """Mapa detalhado: baixa os estados (IBGE ou espelhos), junta por região e salva data/base/mapa_regioes.geojson."""
+    alvo = os.path.join(BASE,'mapa_regioes.geojson')
+    if os.path.exists(alvo):
+        STATUS['mapa'] = {'status':'ok','detalhe':'Mapa detalhado por região (salvo)'}; return
+    fontes = [('https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR', {'formato':'application/vnd.geo+json','qualidade':'intermediaria','intrarregiao':'UF'}),
+              ('https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/brazil-states.geojson', None),
+              ('https://raw.githubusercontent.com/giuliano-oliveira/geodata-br-states/main/geojson/br_states.json', None)]
     try:
         if OFFLINE: raise RuntimeError('offline')
         import requests
-        for nivel, caminho in alvo.items():
-            url = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR'
-            r = requests.get(url, params={'formato':'application/vnd.geo+json','qualidade':'intermediaria','intrarregiao':nivel}, timeout=120)
-            r.raise_for_status(); open(caminho,'w',encoding='utf-8').write(r.text)
-        STATUS['mapa'] = {'status':'ok','detalhe':'Mapa detalhado do IBGE baixado nesta execução'}
+        from shapely.geometry import shape, mapping
+        from shapely.ops import unary_union
+        geo = None
+        for url, params in fontes:
+            try:
+                r = requests.get(url, params=params, timeout=120); r.raise_for_status(); g = r.json()
+                ufs = {_uf_de(f.get('properties',{})): f for f in g.get('features',[])}
+                if len([u for u in ufs if u]) >= 27: geo = ufs; print('Mapa:', url); break
+            except Exception as e: print('Mapa falhou em', url, e)
+        if geo is None: raise RuntimeError('nenhuma fonte de mapa respondeu')
+        feats = []
+        for reg, ufs in REG.items():
+            poly = unary_union([shape(geo[u]['geometry']).buffer(0) for u in ufs]).simplify(0.004, preserve_topology=True)
+            gm = mapping(poly)
+            def arred(c):
+                return [arred(x) for x in c] if isinstance(c[0], (list, tuple)) else [round(c[0],4), round(c[1],4)]
+            gm = {'type': gm['type'], 'coordinates': arred(gm['coordinates'])}
+            feats.append({'type':'Feature','properties':{'regiao':reg},'geometry':gm})
+        with open(alvo,'w',encoding='utf-8') as f: json.dump({'type':'FeatureCollection','features':feats}, f)
+        STATUS['mapa'] = {'status':'ok','detalhe':'Mapa detalhado por região baixado nesta execução'}
     except Exception as e:
         print('Mapa:', e)
-        STATUS['mapa'] = {'status':'base','detalhe':'Mapa detalhado do IBGE ainda não foi baixado: usando o mapa simplificado'}
+        STATUS['mapa'] = {'status':'base','detalhe':'Mapa detalhado ainda não foi baixado: usando o mapa simplificado por região'}
 
 # ---------------- CÁLCULO ----------------
 MESES = [MES0 + pd.DateOffset(months=k) for k in range(6)]

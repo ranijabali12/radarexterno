@@ -2,3 +2,4 @@ pandas>=2.2
 numpy
 requests
 pytrends
+shapely
