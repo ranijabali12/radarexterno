@@ -302,20 +302,27 @@ def tipico(sig, rg):
     return {'disp':1,'z':z,'conf':conf,'fato':fato,'hist_z':hz,'hist_idx':hi,'prev_idx':idx,'tipico':True}
 
 def main():
-    fonte_mapas(); srag = fonte_srag(); trends = fonte_trends(); clima_h, clima_p = fonte_clima(); dengue = fonte_dengue()
+    def seguro(f, padrao):
+        try: return f()
+        except Exception as e: print('Erro em', f.__name__, e); return padrao
+    seguro(fonte_mapas, None); srag = fonte_srag(); trends = seguro(fonte_trends, {})
+    clima_h, clima_p = seguro(fonte_clima, (None, None)); dengue = seguro(fonte_dengue, None)
     dados = {r:{} for r in REGS}
     for rg in REGS:
         for sig,_,_ in SINAIS:
             res=None
-            if sig=='Saúde: SRAG': res=stats_serie(srag[srag.Regiao==rg][['Mes','Valor']], sig)
-            elif sig=='Saúde: dengue': res=stats_serie(dengue[dengue.Regiao==rg][['Mes','Valor']], sig) if dengue is not None else tipico(sig,rg)
-            elif sig.startswith('Busca'):
-                t=trends.get(sig); res=stats_serie(t[t.Regiao==rg][['Mes','Valor']], sig) if t is not None and (t.Regiao==rg).any() else None
-            else:
-                if clima_h is not None:
-                    p=clima_p[sig]; prev={m:v for m,v in p[p.Regiao==rg][['Mes','Valor']].itertuples(index=False)}
+            try:
+                if sig=='Saúde: SRAG': res=stats_serie(srag[srag.Regiao==rg][['Mes','Valor']], sig)
+                elif sig=='Saúde: dengue': res=stats_serie(dengue[dengue.Regiao==rg][['Mes','Valor']], sig) if dengue is not None else None
+                elif sig.startswith('Busca'):
+                    t=trends.get(sig); res=stats_serie(t[t.Regiao==rg][['Mes','Valor']], sig) if t is not None and (t.Regiao==rg).any() else None
+                elif clima_h is not None and sig in clima_h:
+                    p=clima_p.get(sig) if clima_p else None
+                    prev={m:v for m,v in p[p.Regiao==rg][['Mes','Valor']].itertuples(index=False)} if p is not None else None
                     res=stats_serie(clima_h[sig][clima_h[sig].Regiao==rg][['Mes','Valor']], sig, previsao=prev)
-                else: res=tipico(sig,rg)
+            except Exception as e:
+                print('Falha em', rg, sig, e); res=None
+            if res is None and (sig.startswith('Clima') or sig=='Saúde: dengue'): res=tipico(sig,rg)
             if res is None: res={'disp':0,'z':[0]*6,'conf':[0]*6,'fato':['']*6,'hist_z':[0]*24,'hist_idx':[100]*24,'prev_idx':[100]*6}
             dados[rg][sig]=res
     hist_meses=[m.strftime('%Y-%m') for m in pd.date_range(MES0-pd.DateOffset(months=24),MES0-pd.DateOffset(months=1),freq='MS')]+[m.strftime('%Y-%m') for m in MESES]
